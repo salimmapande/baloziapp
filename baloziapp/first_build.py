@@ -1,11 +1,11 @@
-from alembic import op
+#from alembic import op
 from sqlalchemy.orm import query, session
 from sqlalchemy.sql import table, column
 from sqlalchemy import String, Integer
 from sqlalchemy.sql.expression import exists
 from wtforms.fields.simple import StringField
-from tamisemisystem import db   
-from tamisemisystem.models import District, Region
+from baloziapp import db   
+from baloziapp.models import District, Region
 from flask.helpers import flash
 
 #from models import User

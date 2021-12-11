@@ -1,12 +1,12 @@
 from enum import unique
 from flask.app import Flask
 from sqlalchemy.orm import relationship
-from wtforms.fields.simple import TelField
+#from wtforms.fields.simple import TelField
 from wtforms.validators import Length
-from tamisemisystem import db#, login_manager
+from baloziapp import db#, login_manager
 from flask_bcrypt import bcrypt
 from flask_login import UserMixin
-from alembic import op
+#from alembic import op
 
 
 #@login_manager.user_loader

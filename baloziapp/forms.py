@@ -2,11 +2,10 @@ from flask.app import Flask
 from flask_wtf import FlaskForm
 from sqlalchemy.orm import query
 from wtforms import StringField, PasswordField, SubmitField
-from wtforms.fields.choices import SelectField
-from wtforms.fields.simple import SearchField
+from wtforms import SelectField
 from wtforms.validators import Email, Length, EqualTo, DataRequired, ValidationError
 #from tamisemisystem.models import User
-from tamisemisystem.models import District, Region
+from baloziapp.models import District, Region
 
 """ class RegisterForm(FlaskForm):
     def validate_username(self, check_user):

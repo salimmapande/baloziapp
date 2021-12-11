@@ -5,14 +5,14 @@ from sqlalchemy.orm import query
 from sqlalchemy.sql.expression import select
 from sqlalchemy.sql.operators import exists
 from werkzeug.wrappers import request, response
-from tamisemisystem import app, db
+from baloziapp import app, db
 from flask import Flask, render_template, url_for, redirect, jsonify, request, Response
-import  pandas as pd 
-import numpy as np
+#import  pandas as pd 
+#import numpy as np
 import json
 from sqlalchemy.sql import text
-from tamisemisystem.forms import BaloziForm, DistrictForm, RegionForm, UpdateBaloziForm
-from tamisemisystem.models import Balozi, District, Region
+from baloziapp.forms import BaloziForm, DistrictForm, RegionForm, UpdateBaloziForm
+from baloziapp.models import Balozi, District, Region
 
 
 @app.route("/")
