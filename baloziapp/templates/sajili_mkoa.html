@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Mkoa
+{%  endblock %}
+
+{% block content %}
+<h1>Sajili Mkoa</h1>
+
+<form class="form-mkoa" method="post">
+    {{ form.hidden_tag() }}
+    {{ form.regionname.label() }}
+    {{ form.regionname(class="form-control", placeholder="Jina la Mkoa") }}
+    
+  
+    <br>
+    
+   
+    {{ form.submit(class="btn btn-lg btn-block btn-primary") }}
+</form>
+<div class="card-body">
+    <table id="datatablesSimple">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Mkoa</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>ID</th>
+                <th>Mkoa</th>
+            </tr>
+        </tfoot>
+     
+        <tbody>
+            {% for result in results %}
+            <tr>
+                <td>{{ result.id }}</td>
+                <th>{{ result.regionname }}</th>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

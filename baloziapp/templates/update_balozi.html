@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Update Balozi
+{%  endblock %}
+
+{% block content %}
+<div class="content-wrapper">
+    <div class="content-heading"><h1>Update Balozi wa Mtaa</h1></div>
+    <div class="container-fluid">
+       <div class="card card-default d-lg-block">
+          <div class="row">
+             <div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                <div class="card-title text-left alert alert-default"><b style="font-size:22px;">Badili taarifa za balozi wa mtaa</b></div>
+                <div class="card-body">
+                   <form class="form-update_balozi" method="post" action="">
+                     
+                      <fieldset>
+                        <legend></legend>
+                        Jina la kwanza:
+                       <input type="text" name="name" value="{{ balozi_to_update.name }}" class="form-control">
+                       <p></p>
+                       Jina la Ukoo:
+                       <input type="text" name="surname" value="{{ balozi_to_update.surname }}" class="form-control">
+                       <p></p>
+                       Namba ya NIDA:
+                       <input type="text" name="nida" value="{{ balozi_to_update.nida }}" class="form-control">
+                       <p></p>
+                       Namba ya Simu:
+                       <input type="text" name="phonenumber" value="{{ balozi_to_update.phonenumber }}" class="form-control">
+                       <p></p>
+                       Mtaa/Kjiji:
+                       <input type="text" name="street" value="{{ balozi_to_update.street }}" class="form-control">
+                       <p></p>
+                       Kitongoji:
+                       <input type="text" name="neighborhood" value="{{ balozi_to_update.neighborhood }}" class="form-control">
+                       <p></p>
+                       Kata:
+                       <input type="text" name="county" value="{{ balozi_to_update.county }}" class="form-control">
+                       <p></p>
+                       <!-- <input type="text"  name="region" value="{{ balozi_to_update.region_id }}" id= "region" class="form-control autocomplete"> 
+                       <input type="text"  name="district_id" value="{{ balozi_to_update.district_id }}" id= "district_id" class="form-control autocomplete"> -->
+                        
+                       <div class="form-group">
+                       Mkoa:
+                        <select class="form-control" id="region_id" name="region_id">
+                            <option value="">{{balozi_to_update.region}}</option>
+                            {% for region in regions %}
+                                <option value="{{ region.id }}">{{ region.regionname }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                      Wilaya:
+                        <select class="form-control" id="district_id" name="district_id" )>
+                            <option value="">Chagua Wilaya</option>
+                            {% for district in districts %}
+                                <option value="{{ district.id }}">{{ district.districtname }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div style="display:none;">
+                        {{ form.district() }}
+                     </div>
+                     <div style="display:none;">
+                        {{ form.region() }}
+                     </div>
+                
+
+                    </fieldset>
+                      <br>
+                     
+                      {{ form.submit(class="btn btn-lg btn-block btn-primary") }}
+                   </form>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+ </div>
+ 
+  
+ 
+<script>
+   let region_id_select = document.getElementById("region_id");
+   let district_id_select = document.getElementById('district_id');
+   var get_city;
+   
+   $(document).ready(function(){
+
+   
+    region_id_select.onchange = function()
+   {
+        get_city = region_id_select.value;
+        fetch('/districts/' + get_city).then(function(response)
+        {   
+//         //console.table(response);
+             response.json().then(function(data)
+             {
+                
+                 let optionHTML = '';
+                 var id=0;
+                 for(let district of data.districts)
+                 {
+                     //console.table(district);
+                     optionHTML += '<option value="' + district.id + '">' + district.districtname + '</option>';
+                     
+                 }
+                
+                 district_id_select.innerHTML = optionHTML; 
+                 var reg = region_id_select.options[region_id_select.selectedIndex].text;
+                 var dist = district_id_select.options[district_id_select.selectedIndex].text;
+                 $('#district').val(dist);
+                
+                 $('#region').val(reg);
+               });
+               district_id_select.onchange = function(){
+                    $('#district').val(this.value);
+                  }
+
+           
+        });
+      
+    }
+    district_id_select.onchange = function(){
+        alert(this().value);
+    }
+   
+           
+
+        
+
+   });
+</script>
+{% endblock %}
+
+

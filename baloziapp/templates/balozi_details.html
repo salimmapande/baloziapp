@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block titile %}
+Details 
+{% endblock %}
+{%block content %}
+<div class="container d-flex justify-content-center mt-50 mb-50">
+    <div class="card w-100">
+        <div class="card-header header-elements-inline">
+            <h5 class="card-title mt-2">Taarifa za Balozi</h5>
+            <div class="header-elements">
+               
+            </div>
+        </div>
+        <div class="table-responsive">
+           
+            <ul class="list-group">
+                <li class="list-group-item">Name: {{balozi_details.name}}</li>
+                <li class="list-group-item">Surname: {{ balozi_details.surname }}</li>
+                <li class="list-group-item">NIDA: {{ balozi_details.nida }}</li>
+                <li class="list-group-item">Namba ya simu {{ balozi_details.phonenumber }}</li>
+                <li class="list-group-item">Mtaa/Kijiji: {{ balozi_details.street }} </li>
+                <li class="list-group-item">Kitongoji: {{ balozi_details.neighborhood }} </li>
+                <li class="list-group-item">Kata: {{ balozi_details.county }} </li>
+                <li class="list-group-item">Mkoa: {{ balozi_details.region }} </li>
+                <li class="list-group-item">Wilaya: {{ balozi_details.district }} </li>
+              </ul>
+              <a  class="btn btn-primary" value="Previous" href="{{url_for('balozi_page')}}">&laquo; Previous</a>
+           
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

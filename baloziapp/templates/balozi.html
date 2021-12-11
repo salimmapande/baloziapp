@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Orodha ya Mabalozi
+{% endblock %}
+{% block content %}
+<div class="content-heading"><h1>Orodha ya Mabalozi wa mtaa</h1></div>
+<a class="content-heading" href="{{ url_for('create_balozi_page') }}" style="text-decoration: none;"><b>Sajili Balozi Mpya</b></a>
+<div class="card-body">
+    <table id="datatablesSimple">
+        <thead>
+            <tr>
+                <th>Jina </th>
+                <th>Nama ya NIDA</th>
+                <th>Namba ya simu</th>
+                <th>Mtaa/Kijiji</th>
+                <th>Kitongoji</th>
+                <th>Kata</th>
+                <th>Wilaya</th>
+                <th>Mkoa</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+            
+        </thead>
+           
+        <tbody>
+            {% for result in results %}
+            <tr>
+                <td>{{ result.name +' '+ result.surname }}</td>
+                <td>{{ result.nida }}</td>
+                <td>{{ result.phonenumber }}</td>
+                <td>{{ result.street }}</td>
+                <td>{{ result.neighborhood }}</td>
+                <td>{{ result.county }}</td>
+                <td>{{ result.districtname }}</td>
+                <td>{{ result.regionname }}</td>
+                <td style="background-color: green;"><a href="/balozi_details/{{ result.Balozi.id }}" ><span class="fa fa-info" style="font-size: 16px; color: white;" data-bs-toggle="tooltip" data-bs-placement="top" title="Taarifa"></span></a> </td>
+                <td style="background-color: blue;"><a href="/update_balozi/{{ result.Balozi.id }}"> <span class="fa fa-marker" style='font-size:16px;color:white;' color="&#xf044;" data-bs-toggle="tooltip" data-bs-placement="top" title="Badili"></span></a> </td>
+                <td style="background-color: red;"><a href="/confirm_delete/{{ result.Balozi.id }}"> <span class="fa fa-trash" style='font-size:16px;color:white;' data-bs-toggle="tooltip" data-bs-placement="top" title="Futa"></span></a> </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+ </div>
+ <script type="text/javascript" src="{{ url_for('static', filename='js/tooltip.js')}}"></script>
+{% endblock %}

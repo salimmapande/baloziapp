@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Wilaya
+{%  endblock %}
+
+{% block content %}
+<h1>Sajili Wilaya</h1>
+
+<form class="form-wilaya" method="post">
+    {{ form.hidden_tag() }}
+    {{ form.region_id.label() }}
+    {{ form.region_id(class="form-control", placeholder="Id ya Mkoa") }}
+    {{ form.districtname.label() }}
+    {{ form.districtname(class="form-control", placeholder="Jina la Wilaya") }}
+    
+    <br>
+    {{ form.submit(class="btn btn-lg btn-block btn-primary") }}
+</form>
+<div class="card-body">
+    <table id="datatablesSimple">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Wilaya</th>
+                <th>RegionID</th>
+               
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>ID</th>
+                <th>Wilaya</th>
+                <th>RegionID</th>
+            </tr>
+        </tfoot>
+     
+        <tbody>
+            {% for result in results %}
+            <tr>
+                <td>{{ result.id }}</td>
+                <th>{{ result.districtname }}</th>
+                <th>{{ result.region_id }}</th>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<script>
+
+</script>
+{% endblock %}
