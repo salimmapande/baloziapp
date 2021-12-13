@@ -73,22 +73,16 @@ def balozi_page():
 @app.route('/create_balozi', methods=['GET', 'POST'])
 def create_balozi_page():
     form = BaloziForm()
-    if request.method == 'POST' and form.validate_on_submit():
-    
-        _balozi = Balozi(name = form.name.data, surname = form.surname.data,nida = text(form.nida.data), street = form.street.data, neighborhood = form.neighborhood.data, county = form.county.data, district_id = form.district_id.data, district = form.district.data, region_id = form.region_id.data, region = form.region.data, phonenumber = form.phonenumber.data)
-        exists = db.session.query(Balozi.nida).filter_by(nida = text(form.nida.data)).first() is not None
-        
-        if exists:
-            flash(f'Namba ya {form.nida.data} imesajiliwa na balozi mwengine, tafadhali jaribu nyengine')
-        else:
-            db.session.add(_balozi)
-            db.session.commit()
-            results = db.session.query(Balozi, District, Region).filter(Balozi.district_id==District.id, Balozi.region_id == Region.id).add_columns(Balozi.id,Balozi.name,Balozi.surname,Balozi.nida,Balozi.phonenumber, Balozi.street, Balozi.neighborhood ,Balozi.county,District.id, District.districtname,Region.id, Region.regionname)
-            return render_template('balozi.html', results = results)
+    if form.validate_on_submit():
+        _balozi = Balozi(name = form.name.data, surname = form.surname.data,nida = text(form.nida.data),phonenumber = text(form.phonenumber.data), street = form.street.data, neighborhood = form.neighborhood.data, county = form.county.data, region_id = int(form.region_id.data), district_id = int(form.district_id.data), region = form.region.data, district = form.district.data)
+        db.session.add(_balozi)
+        db.session.commit()
+      
+        return redirect(url_for('balozi_page'))
 
-        if form.errors != {}:
+    if form.errors != {}:
             for errMsg in form.errors.values():
-                flash(f'There was an error creating the balozi {errMsg}', category='danger')
+                flash(f'There was an error creating the balozi {errMsg},{form.district_id.data},{form.region_id.data}',  category='danger')
     regions = db.session.query(Region).all()
     districts = db.session.query(District).all()
     return render_template('create_balozi.html', form=form, regions = regions, districts = districts)
@@ -127,7 +121,8 @@ def delete_balozi(id):
 @app.route('/confirm_delete/<int:id>')
 def confirm_delete(id):
     balozi_id = id
-    return render_template('confirm_delete.html', balozi_id = balozi_id)
+    task_to_delete = Balozi.query.get_or_404(id)
+    return render_template('confirm_delete.html', balozi_id = balozi_id, task_to_delete=task_to_delete)
 
 @app.route('/update_balozi/<int:id>', methods=['GET', 'POST'])
 def update_balozi(id):
