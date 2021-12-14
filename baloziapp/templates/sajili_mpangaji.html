@@ -1,0 +1,183 @@
+{% extends 'base.html'%}
+
+{% block title %}
+Mkazi Page
+{% endblock %}
+{% block content %}
+<div class="content-wrapper">
+    <div class="content-heading"><h1>Sajili Mkazi</h1></div>
+    <div class="container-fluid">
+       <div class="card card-default d-lg-block">
+          <div class="row">
+             <div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                <div class="card-title text-left alert alert-default"><b style="font-size:18px;">Jaza taarifa kwa usahihi za mahali unapoishi</b></div>
+                <div class="card-body">
+                   <form class="form-sajili_mpangaji" method="POST" action="">
+                     {{ form.hidden_tag() }}
+                     <div class="form-group row">
+                        {{ form.landloadname.label(class="text-bold col-xl-4 col-md-4 col-xs-12 col-form-label text-left") }}
+                              <div class="col-xl-6 col-md-6 col-xs-12">
+                                 {{ form.landloadname(class="form-control", placeholder="Jina la kwanza la mwenye nyumba", autocomplete="off") }}
+                             </div>
+                     </div>
+                     <p></p>
+                     <div class="form-group row">
+                        {{ form.lanloadphone.label(class="text-bold col-xl-4 col-md-4 col-xs-12 col-form-label text-left") }}
+                              <div class="col-xl-6 col-md-6 col-xs-12">
+                                 {{ form.lanloadphone(class="form-control", placeholder="Namba ya mwenye nyumba", autocomplete="off") }}
+                             </div>
+                     </div>
+
+                     <div class="card-title text-left alert alert-default"><b style="font-size:18px;">Jaza taarifa za Mpangaji</b></div>
+                     
+                  
+                     <div class="form-group row">
+                        {{ form.tenantname.label(class="text-bold col-xl-4 col-md-4 col-xs-12 col-form-label text-left") }}
+                              <div class="col-xl-6 col-md-6 col-xs-12">
+                                 {{ form.tenantname(class="form-control", placeholder="Jina la kwanza la Mpangaji", autocomplete="off") }}
+                             </div>
+                     </div>
+                     <p></p>
+                     <div class="form-group row">
+                        {{ form.tenantsurname.label(class="text-bold col-xl-4 col-md-4 col-xs-12 col-form-label text-left") }}
+                              <div class="col-xl-6 col-md-6 col-xs-12">
+                                 {{ form.tenantsurname(class="form-control", placeholder="Jina la pili la Mpangaji", autocomplete="off") }}
+                             </div>
+                     </div>
+                     <P></P>
+                     <div class="form-group row">
+                        {{ form.nida.label(class="text-bold col-xl-4 col-md-4 col-xs-12 col-form-label text-left") }}
+                              <div class="col-xl-6 col-md-6 col-xs-12">
+                                 {{ form.nida(class="form-control", placeholder="Kitambulisho cha taifa cha Mpangaji", autocomplete="off") }}
+                             </div>
+                     </div>
+                     <p></p>
+                     <div class="form-group row">
+                        {{ form.tenantphone.label(class="text-bold col-xl-4 col-md-4 col-xs-12 col-form-label text-left") }}
+                              <div class="col-xl-6 col-md-6 col-xs-12">
+                                 {{ form.tenantphone(class="form-control", placeholder="Namba ya simu ya Mpangaji", autocomplete="off") }}
+                             </div>
+                     </div>
+                   
+                     
+                      <div class="form-group row">
+                        {{ form.street.label(class="text-bold col-xl-4 col-md-4 col-xs-12 col-form-label text-left") }}
+                              <div class="col-xl-6 col-md-6 col-xs-12">
+                                 {{ form.street(class="form-control", placeholder="Mtaa unaoishi", autocomplete="off") }}
+                             </div>
+                     </div>
+                     <p></p>
+                     <div class="form-group row">
+                        {{ form.neighborhood.label(class="text-bold col-xl-4 col-md-4 col-xs-12 col-form-label text-left") }}
+                              <div class="col-xl-6 col-md-6 col-xs-12">
+                                 {{ form.neighborhood(class="form-control", placeholder="Kitongoji", autocomplete="off") }}
+                             </div>
+                     </div>
+                     <p></p>
+                     <div class="form-group row">
+                        {{ form.county.label(class="text-bold col-xl-4 col-md-4 col-xs-12 col-form-label text-left") }}
+                              <div class="col-xl-6 col-md-6 col-xs-12">
+                                 {{ form.county(class="form-control", placeholder="Kata", autocomplete="off") }}
+                             </div>
+                     </div>
+                     <p></p>
+                     <div class="form-group row">
+                        {{ form.region_id.label(class="text-bold col-xl-4 col-md-4 col-xs-12 col-form-label text-left") }}
+                              <div class="col-xl-6 col-md-6 col-xs-12">
+                                 {{ form.region_id(class="form-control", placeholder="Mkoa") }}
+                             </div>
+                     </div>
+                     <p></p>
+                     <div class="form-group row">
+                        {{ form.district_id.label(class="text-bold col-xl-4 col-md-4 col-xs-12 col-form-label text-left") }}
+                              <div class="col-xl-6 col-md-6 col-xs-12">
+                                 {{ form.district_id(class="form-control", placeholder="Wilaya") }}
+                             </div>
+                     </div>
+                     <p></p>
+                     <div class="form-group row">
+                        {{ form.baloziname.label(class="text-bold col-xl-4 col-md-4 col-xs-12 col-form-label text-left") }}
+                              <div class="col-xl-6 col-md-6 col-xs-12">
+                                 {{ form.baloziname(class="form-control", placeholder="Jina la pili la Mpangaji", autocomplete="off") }}
+                             </div>
+                     </div>
+                     
+                     <div class="card-title text-left alert alert-default"><b style="font-size:18px;">Taarifa za mgeni</b></div>
+                     <div class="form-group row">
+                        {{ form.guestname.label(class="text-bold col-xl-4 col-md-4 col-xs-12 col-form-label text-left") }}
+                              <div class="col-xl-6 col-md-6 col-xs-12">
+                                 {{ form.guestname(class="form-control", placeholder="Jina la mgeni") }}
+                             </div>
+                     </div>
+                     <p></p>
+                     <div class="form-group row">
+                        {{ form.guessaddress.label(class="text-bold col-xl-4 col-md-4 col-xs-12 col-form-label text-left") }}
+                              <div class="col-xl-6 col-md-6 col-xs-12">
+                                 {{ form.guessaddress(class="form-control", placeholder="Anuwani ya mgeni") }}
+                             </div>
+                     </div>
+                     <p></p>
+                     <div class="form-group row">
+                        {{ form.datein.label(class="text-bold col-xl-4 col-md-4 col-xs-12 col-form-label text-left") }}
+                              <div class="col-xl-6 col-md-6 col-xs-12">
+                                 {{ form.datein(class="form-control", placeholder="Terehe ya kuingia") }}
+                             </div>
+                     </div>
+                     <p></p>
+                     <div class="form-group row">
+                        {{ form.dateout.label(class="text-bold col-xl-4 col-md-4 col-xs-12 col-form-label text-left") }}
+                              <div class="col-xl-6 col-md-6 col-xs-12">
+                                 {{ form.dateout(class="form-control datepicker ", placeholder="Tarehe ya kutoka") }}
+                             </div>
+                     </div>
+                     <div style="display:none;">
+                         {{ form.district() }}
+                      </div>
+                      <div style="display:none;">
+                         {{ form.region() }}
+                      </div>
+              
+                      <br>
+                      <input class="btn btn-primary" id="submit" name="submit" type="submit" value="Create">
+                   </form>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+ </div>
+ <script>
+   let region_id_select = document.getElementById("region_id");
+   let district_id_select = document.getElementById('district_id');
+  
+   region_id_select.onchange = function()
+   {
+       region_id = region_id_select.value;
+       
+      // alert(region_id_select.value);
+       fetch('/region/' + region_id).then(function(response, e)
+       {
+        //console.table(response);
+       
+            response.json().then(function(data)
+            {
+               
+                let optionHTML = '';
+                for(let district of data.districts)
+                {
+                    //console.table(district);
+                    optionHTML += '<option value="' + district['id'] + '">' + district['districtname'] + '</option>';
+                }
+                district_id_select.innerHTML = optionHTML; 
+                var reg = region_id_select.options[region_id_select.selectedIndex].text;
+                 var dist =district_id_select.options[district_id_select.selectedIndex].text;
+                $("#region").val(reg);
+                $("#district").val(dist);
+                // alert(district_id_select.value);
+               
+            });
+       });
+       
+   }
+</script>
+{% endblock %}

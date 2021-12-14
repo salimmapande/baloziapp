@@ -47,6 +47,21 @@ class Balozi(db.Model):
     region = db.Column(db.String(length=50), nullable=False)
     phonenumber = db.Column(db.String(length=15), nullable = True)
 
+class Mkazi(db.Model):
+    __tablename__ = 'mkazi'
+    id = db.Column(db.Integer(), primary_key=True)
+    name = db.Column(db.String(length=50), nullable = False)
+    surname = db.Column(db.String(length=50), nullable = False)
+    nida = db.Column(db.String(length=30), nullable =False)
+    street = db.Column(db.String(length=50), nullable = False)
+    neighborhood = db.Column(db.String(length=50), nullable = False)#kitongoji
+    county =  db.Column(db.String(length=50), nullable=False) #kata
+    district_id = db.Column(db.Integer(), db.ForeignKey('district.id'))#wilaya
+    district = db.Column(db.String(), nullable=False)
+    region_id = db.Column(db.Integer(), db.ForeignKey('region.id'))#Mkoa
+    region = db.Column(db.String(length=50), nullable=False)
+    phonenumber = db.Column(db.String(length=15), nullable = True)
+
 
 
 class District(db.Model):

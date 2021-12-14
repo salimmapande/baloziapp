@@ -11,7 +11,7 @@ from flask import Flask, render_template, url_for, redirect, jsonify, request, R
 #import numpy as np
 import json
 from sqlalchemy.sql import text
-from baloziapp.forms import BaloziForm, DistrictForm, RegionForm, UpdateBaloziForm
+from baloziapp.forms import BaloziForm, DistrictForm, MpangajiForm, RegionForm, UpdateBaloziForm
 from baloziapp.models import Balozi, District, Region
 
 
@@ -74,11 +74,14 @@ def balozi_page():
 def create_balozi_page():
     form = BaloziForm()
     if form.validate_on_submit():
-        _balozi = Balozi(name = form.name.data, surname = form.surname.data,nida = text(form.nida.data),phonenumber = text(form.phonenumber.data), street = form.street.data, neighborhood = form.neighborhood.data, county = form.county.data, region_id = int(form.region_id.data), district_id = int(form.district_id.data), region = form.region.data, district = form.district.data)
-        db.session.add(_balozi)
-        db.session.commit()
+        if exists:
+            flash(f'Namba ya NIDA {form.nida.data} imesajiliwa na balozi mwengine, hakikisha namba vizuri', category='danger')
+        else:
+            _balozi = Balozi(name = form.name.data.upper(), surname = form.surname.data.upper(),nida = text(form.nida.data),phonenumber = text(form.phonenumber.data), street = form.street.data.upper(), neighborhood = form.neighborhood.data.upper(), county = form.county.data.upper(), region_id = int(form.region_id.data), district_id = int(form.district_id.data), region = form.region.data.upper(), district = form.district.data.upper())
+            db.session.add(_balozi)
+            db.session.commit()
       
-        return redirect(url_for('balozi_page'))
+            return redirect(url_for('balozi_page'))
 
     if form.errors != {}:
             for errMsg in form.errors.values():
@@ -176,6 +179,24 @@ def city(get_city):
         distObj['districtname'] = dist.districtname
         districtArray.append(distObj)
     return jsonify({'districts': districtArray})
+
+@app.route('/sajili_mpangaji', methods=['GET', 'POST'])
+def sajili_mpangaji_page():
+    form = MpangajiForm()
+    if form.validate_on_submit():
+        if exists:
+            flash(f'Namba ya NIDA {form.nida.data} imesajiliwa na balozi mwengine, hakikisha namba vizuri', category='danger')
+        else:
+            pass
+      
+            return redirect(url_for('balozi_page'))
+
+    if form.errors != {}:
+            for errMsg in form.errors.values():
+                flash(f'There was an error creating the balozi {errMsg},{form.district_id.data},{form.region_id.data}',  category='danger')
+    regions = db.session.query(Region).all()
+    districts = db.session.query(District).all()
+    return render_template('sajili_mpangaji.html', form=form, regions = regions, districts = districts)
       
       
      
