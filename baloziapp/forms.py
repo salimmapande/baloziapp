@@ -78,7 +78,7 @@ class MpangajiForm(FlaskForm):
     kazi = StringField(label="Kazi ya mpangaji: ")
     guestname = StringField(label="Jina la mgeni")
     guessaddress = StringField(label="Anuwani ya Mgeni",validators=[Length(max=50)])
-    datein = DateField("Tarehe ya kuingia", validators=None, format="%Y-%m-%d",  default=datetime.now())
+    datein = DateField("Tarehe ya kuingia",id='datepick', validators=None, format="%Y-%m-%d",  default=datetime.now())
     dateout = DateField("Tarehe ya kutoka",validators=None, format="%Y-%m-%d", default=datetime.now())
     tenantphone = StringField(label="Namba ya simu: ", validators=[Length(max=15)])
     submit = SubmitField(label='Create')
